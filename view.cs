@@ -22,5 +22,8 @@ namespace SevenZipFrontend {
                 return ""; // Return an empty string in case of an exception
             }
         }
+        public void ShowMessage(string message) {
+            Console.WriteLine(message);
+        }
     }
 }

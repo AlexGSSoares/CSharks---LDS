@@ -1,27 +1,40 @@
 using System;
 using SevenZip;
+using System.IO;
 
 namespace SevenZipFrontend {
     // Model
     public class ArchiveManager {
-        public void CreateArchive(string archiveName, string[] filesToArchive) {
-            // Logic to create an archive using SevenZipSharp API
-            // This method would interact directly with SevenZipSharp API
-            // Example:
-            SevenZipCompressor.SetLibraryPath("7z64.dll");
-            var compressor = new SevenZipCompressor();
-            compressor.CompressFiles(archiveName, filesToArchive);
-            Console.WriteLine("Archive created successfully!");
+        public bool CreateArchive(string archiveName, string[] filesToArchive) {
+            try {
+                // Check if the archive already exists
+                if (File.Exists(archiveName)) {
+                    return false; // Indicate that the archive already exists
+                }
+                // Logic to create an archive using SevenZipSharp API
+                // This method would interact directly with SevenZipSharp API
+                // Example:
+                SevenZipCompressor.SetLibraryPath("7z64.dll");
+                var compressor = new SevenZipCompressor();
+                compressor.CompressFiles(archiveName, filesToArchive);
+                return true; // Indicate that the archive was created successfully
+            } catch {
+                return false; // Indicate that the archive creation failed
+            }
         }
 
-        public void ExtractArchive(string archiveName, string extractPath) {
-            // Logic to extract an archive using SevenZipSharp API
-            // This method would interact directly with SevenZipSharp API
-            // Example:
-            SevenZipCompressor.SetLibraryPath("7z64.dll");
-            var extractor = new SevenZipExtractor(archiveName);
-            extractor.ExtractArchive(extractPath);
-            Console.WriteLine("Archive extracted successfully!");
+        public bool ExtractArchive(string archiveName, string extractPath) {
+            try {
+                // Logic to extract an archive using SevenZipSharp API
+                // This method would interact directly with SevenZipSharp API
+                // Example:
+                SevenZipCompressor.SetLibraryPath("7z64.dll");
+                var extractor = new SevenZipExtractor(archiveName);
+                extractor.ExtractArchive(extractPath);
+                return true; // Indicate that the archive was extracted successfully
+            } catch {
+                return false; // Indicate that the archive extraction failed
+            }
         }
     }
 }
