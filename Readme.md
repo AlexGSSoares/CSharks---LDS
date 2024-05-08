@@ -17,10 +17,10 @@ A nossa ferramenta que utiliza a biblioteca **7z** para compactar e descompactar
 	Descarregue o Git através do [link oficial](https://git-scm.com/download/win).
 
 - **Linux (via PowerShell):**
-  ```powershell
+
   	apt install git
   	# Digite "y" quando solicitado.
-  ```
+
   
 	++++++++++++++++++++++++++++++
 	***** CLONAR REPOSITÓRIO *****
@@ -30,22 +30,19 @@ Para clonar o programa no seu computador, siga os passos abaixo:
 
 1. Certifique-se de estar num diretório seguro onde deseja clonar o repositório. Use o comando `cd` para navegar entre pastas e `mkdir` para criar uma nova pasta, se necessário.
 
-2. Clone o repositório:
-   ```powershell
+2. Clone o repositório. Comandos de Powershell:
    - git clone https://github.com/AlexGSSoares/CSharks---LDS
    - cd CSharks---LDS
-   ```
+   
    
 	+++++++++++++++++++++++++++++++++
 	***** COMPILAÇÃO E EXECUÇÃO *****
 	+++++++++++++++++++++++++++++++++
 
-Após clonar o repositório e navegar para o diretório do programa, compile e execute o programa usando os seguintes comandos:
+Após clonar o repositório e navegar para o diretório do programa, compile e execute o programa usando os seguintes comandos no PowerShell:
 
-```powershell
 dotnet build   # Compila o programa
 dotnet run     # Executa o programa
-```
 
 	+++++++++++++++++++++++++++++++++++++++
 	***** FUNCIONALIDADES DO PROGRAMA *****
