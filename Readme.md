@@ -1,3 +1,6 @@
+![image](https://github.com/AlexGSSoares/CSharks---LDS/assets/168682727/ad66d665-66a4-42a4-9ca2-e0d5f314e482)
+
+      
       =========================================
       ## README - CSharks 7z Management Tool ##
       =========================================
