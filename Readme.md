@@ -11,10 +11,10 @@ A nossa ferramenta que utiliza a biblioteca **7z** para compactar e descompactar
       ***** INSTALAÇÃO *****
       ++++++++++++++++++++++º
 
--- Baixar o Git --
+-- Descarregar o Git --
 - **Windows:** 
 
-	Baixe o Git através do [link oficial](https://git-scm.com/download/win).
+	Descarregue o Git através do [link oficial](https://git-scm.com/download/win).
 
 - **Linux (via PowerShell):**
   ```powershell
