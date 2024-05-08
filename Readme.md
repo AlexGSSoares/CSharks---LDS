@@ -4,12 +4,11 @@
       =========================================
       ## README - CSharks 7z Management Tool ##
       =========================================
-
 A nossa ferramenta que utiliza a biblioteca **7z** para compactar e descompactar arquivos, proporcionando uma maneira eficiente de gerir arquivos compactados.
 
-	++++++++++++++++++++++
-	***** INSTALAÇÃO *****
-	++++++++++++++++++++++
+
+## INSTALAÇÃO ##
+
 
 -- Descarregar o Git --
 - **Windows:** 
@@ -19,12 +18,10 @@ A nossa ferramenta que utiliza a biblioteca **7z** para compactar e descompactar
 - **Linux (via PowerShell):**
 
   	apt install git
-  	# Digite "y" quando solicitado.
+  	(* Digite "y" quando solicitado.)
 
   
-	++++++++++++++++++++++++++++++
-	***** CLONAR REPOSITÓRIO *****
-	++++++++++++++++++++++++++++++
+## CLONAR REPOSITÓRIO ##
 
 Para clonar o programa no seu computador, siga os passos abaixo:
 
@@ -33,20 +30,15 @@ Para clonar o programa no seu computador, siga os passos abaixo:
 2. Clone o repositório. Comandos de Powershell:
    - git clone https://github.com/AlexGSSoares/CSharks---LDS
    - cd CSharks---LDS
-   
-   
-	+++++++++++++++++++++++++++++++++
-	***** COMPILAÇÃO E EXECUÇÃO *****
-	+++++++++++++++++++++++++++++++++
+
+## EXECUÇÃO E Compilação ##
 
 Após clonar o repositório e navegar para o diretório do programa, compile e execute o programa usando os seguintes comandos no PowerShell:
 
 dotnet build   # Compila o programa
 dotnet run     # Executa o programa
 
-	+++++++++++++++++++++++++++++++++++++++
-	***** FUNCIONALIDADES DO PROGRAMA *****
-	+++++++++++++++++++++++++++++++++++++++
+## FUNCIONALIDADES DO PROGRAMA ##
 
 O **CSharks** possui um menu interativo com três opções principais:
 
