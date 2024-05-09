@@ -31,7 +31,7 @@ Para clonar o programa no seu computador, siga os passos abaixo:
    - git clone https://github.com/AlexGSSoares/CSharks---LDS
    - cd CSharks---LDS
 
-## EXECUÇÃO E Compilação ##
+## EXECUÇÃO E COMPILAÇÃO ##
 
 Após clonar o repositório e navegar para o diretório do programa, compile e execute o programa usando os seguintes comandos no PowerShell:
 
