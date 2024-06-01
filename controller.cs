@@ -1,6 +1,4 @@
-using System;
-
-namespace SevenZipFrontend {
+namespace SevenZipFrontend{
     // Controller
     public class ArchiveController {
         private ArchiveManager archiveManager;
@@ -34,9 +32,49 @@ namespace SevenZipFrontend {
         }
 
         private void CreateArchive() {
-            string archiveName = view.GetUserInput("Enter the name of the archive");
-            string files = view.GetUserInput("Enter the files to be archived (comma-separated)");
-            string[] filesToArchive = files.Split(',');
+            string archiveName = null;
+            var t1 = new Thread((ThreadStart)(() => {
+                using (var saveFileDialog = new SaveFileDialog()) {
+                    saveFileDialog.Filter = "7ZIP files (*.7z)|*.7z|ZIP files (*.zip)|*.zip|All files (*.*)|*.*";
+                    saveFileDialog.FilterIndex = 1;
+                    saveFileDialog.RestoreDirectory = true;
+
+                    if (saveFileDialog.ShowDialog() == DialogResult.OK) {
+                        archiveName = saveFileDialog.FileName;
+                    }
+                }
+            }));
+
+            t1.SetApartmentState(ApartmentState.STA);
+            t1.Start();
+            t1.Join();
+
+            if (archiveName == null) {
+                // User cancelled, return without creating archive
+                return;
+            }
+
+            string[] filesToArchive = null;
+            var t2 = new Thread((ThreadStart)(() => {
+                using (var openFileDialog = new OpenFileDialog()) {
+                    openFileDialog.Multiselect = true;
+                    openFileDialog.Filter = "All files (*.*)|*.*";
+                    openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+                    if (openFileDialog.ShowDialog() == DialogResult.OK) {
+                        filesToArchive = openFileDialog.FileNames;
+                    }
+                }
+            }));
+
+            t2.SetApartmentState(ApartmentState.STA);
+            t2.Start();
+            t2.Join();
+
+            if (filesToArchive == null || filesToArchive.Length == 0) {
+                // User cancelled, return without creating archive
+                return;
+            }
+
             if (archiveManager.CreateArchive(archiveName, filesToArchive)) {
                 view.ShowMessage("Archive created successfully!");
             } else {
@@ -45,8 +83,46 @@ namespace SevenZipFrontend {
         }
 
         private void ExtractArchive() {
-            string archiveName = view.GetUserInput("Enter the name of the archive to extract");
-            string extractPath = view.GetUserInput("Enter the extraction path");
+            string archiveName = null;
+            var t1 = new Thread((ThreadStart)(() => {
+                using (var openFileDialog = new OpenFileDialog()) {
+                    openFileDialog.Filter = "7ZIP files (*.7z)|*.7z|ZIP files (*.zip)|*.zip|All files (*.*)|*.*";
+                    openFileDialog.FilterIndex = 1;
+                    openFileDialog.RestoreDirectory = true;
+
+                    if (openFileDialog.ShowDialog() == DialogResult.OK) {
+                        archiveName = openFileDialog.FileName;
+                    }
+                }
+            }));
+
+            t1.SetApartmentState(ApartmentState.STA);
+            t1.Start();
+            t1.Join();
+
+            if (archiveName == null) {
+                // User cancelled, return without extracting archive
+                return;
+            }
+
+            string extractPath = null;
+            var t2 = new Thread((ThreadStart)(() => {
+                using (var folderBrowserDialog = new FolderBrowserDialog()) {
+                    if (folderBrowserDialog.ShowDialog() == DialogResult.OK) {
+                        extractPath = folderBrowserDialog.SelectedPath;
+                    }
+                }
+            }));
+
+            t2.SetApartmentState(ApartmentState.STA);
+            t2.Start();
+            t2.Join();
+
+            if (extractPath == null) {
+                // User cancelled, return without extracting archive
+                return;
+            }
+
             if (archiveManager.ExtractArchive(archiveName, extractPath)) {
                 view.ShowMessage("Archive extracted successfully!");
             } else {

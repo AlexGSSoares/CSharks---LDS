@@ -1,6 +1,4 @@
-using System;
-
-namespace SevenZipFrontend {
+namespace SevenZipFrontend{
     // View
     public class ConsoleView {
         public void DisplayMenu() {

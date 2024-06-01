@@ -1,8 +1,6 @@
-using System;
 using SevenZip;
-using System.IO;
 
-namespace SevenZipFrontend {
+namespace SevenZipFrontend{
     // Model
     public class ArchiveManager {
         public bool CreateArchive(string archiveName, string[] filesToArchive) {
