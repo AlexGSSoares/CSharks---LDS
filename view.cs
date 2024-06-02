@@ -59,6 +59,15 @@ namespace SevenZipFrontend {
                             case ".zip":
                                 format = OutArchiveFormat.Zip;
                                 break;
+                            case ".gz":
+                                format = OutArchiveFormat.GZip;
+                                break;
+                            case ".bz2":
+                                format = OutArchiveFormat.BZip2;
+                                break;
+                            case ".tar":
+                                format = OutArchiveFormat.Tar;
+                                break;
                             case ".7z":
                             default:
                                 format = OutArchiveFormat.SevenZip;
