@@ -28,7 +28,16 @@ namespace SevenZipFrontend {
                 return;
             }
 
-            if (archiveManager.CreateArchive(archiveName, filesToArchive, format, compressionLevel)) {
+            string password = null;
+            if (view.IsPasswordProtected()) {
+                password = view.GetPassword();
+                if (password == null) {
+                    // User cancelled, return without creating archive
+                    return;
+                }
+            }
+
+            if (archiveManager.CreateArchive(archiveName, filesToArchive, format, compressionLevel, password)) {
                 view.ShowMessage("Archive created successfully!");
             } else {
                 view.ShowMessage("Failed to create archive. Archive may already exist.");
@@ -48,10 +57,23 @@ namespace SevenZipFrontend {
                 return;
             }
 
-            if (archiveManager.ExtractArchive(archiveName, extractPath)) {
-                view.ShowMessage("Archive extracted successfully!");
-            } else {
-                view.ShowMessage("Failed to extract archive. Archive may not exist or extraction failed.");
+            try {
+                if (archiveManager.ExtractArchive(archiveName, extractPath)) {
+                    view.ShowMessage("Archive extracted successfully!");
+                } else {
+                    view.ShowMessage("Failed to extract archive. Archive may not exist or extraction failed.");
+                }
+            } catch (ArchiveManager.PasswordProtectedException) {
+                string password = view.GetPassword();
+                if (password == null) {
+                    // User cancelled, return without extracting archive
+                    return;
+                }
+                if (archiveManager.ExtractArchive(archiveName, extractPath, password)) {
+                    view.ShowMessage("Archive extracted successfully!");
+                } else {
+                    view.ShowMessage("Failed to extract archive. Password may be incorrect or extraction failed.");
+                }
             }
         }
     }

@@ -11,7 +11,9 @@ namespace SevenZipFrontend {
         CompressionLevel GetCompressionLevel();
         string[] GetFilesToArchive();
         string GetExtractPath();
-        string GetArchiveToExtract();        
+        string GetArchiveToExtract();
+        bool IsPasswordProtected();
+        string GetPassword();
     }
     public partial class MainForm : Form, IConsoleView {
         public MainForm() {
@@ -27,6 +29,20 @@ namespace SevenZipFrontend {
         }
         private void btnExtractArchive_Click(object sender, EventArgs e) {
             controller.ExtractArchive();
+        }
+
+        public bool IsPasswordProtected() {
+            return chkPasswordProtected.Checked;
+        }
+
+        public string GetPassword() {
+            using (var passwordForm = new PasswordForm()) {
+                if (passwordForm.ShowDialog() == DialogResult.OK) {
+                    return passwordForm.Password;
+                } else {
+                    return null; // User cancelled, return null
+                }
+            }
         }
 
         public CompressionLevel GetCompressionLevel() {

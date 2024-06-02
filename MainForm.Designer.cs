@@ -4,8 +4,50 @@ namespace SevenZipFrontend {
         private System.Windows.Forms.Button btnExtractArchive;
         private System.Windows.Forms.ComboBox compressionLevelComboBox;
         private System.Windows.Forms.Label compressionLevelLabel;
+        private System.Windows.Forms.CheckBox chkPasswordProtected;
 
+        private class PasswordForm : Form {
+            public string Password { get; private set; }
+
+            private TextBox passwordTextBox;
+            private Button okButton;
+
+            public PasswordForm() {
+                InitializeComponent();
+            }
+
+            private void InitializeComponent() {
+                this.passwordTextBox = new TextBox();
+                this.Controls.Add(this.passwordTextBox);
+                this.passwordTextBox.PasswordChar = '*'; // Hide the password input
+                this.passwordTextBox.TextChanged += (sender, e) => {
+                    this.Password = ((TextBox)sender).Text;
+                };
+                this.okButton = new Button();
+                this.Controls.Add(this.okButton);
+                this.okButton.Text = "OK";
+                this.okButton.Dock = DockStyle.Bottom;
+                this.okButton.Click += (sender, e) => {
+                    this.DialogResult = DialogResult.OK;
+                    this.Close();
+                };
+
+                this.AcceptButton = this.okButton;
+                this.StartPosition = FormStartPosition.CenterParent;
+                this.ClientSize = new Size(200, 100);
+            }
+        }
+        
         private void InitializeComponent() {
+            // chkPasswordProtected
+            this.chkPasswordProtected = new System.Windows.Forms.CheckBox();
+            this.chkPasswordProtected.Location = new System.Drawing.Point(280, 20);
+            this.chkPasswordProtected.Name = "chkPasswordProtected";
+            this.chkPasswordProtected.Size = new System.Drawing.Size(120, 15);
+            this.chkPasswordProtected.Text = "Password Protected";
+            this.chkPasswordProtected.UseVisualStyleBackColor = true;
+            this.Controls.Add(this.chkPasswordProtected);
+            
             // the compression level options to the ComboBox
             this.compressionLevelComboBox = new System.Windows.Forms.ComboBox();
             this.Controls.Add(this.compressionLevelComboBox);
