@@ -33,7 +33,7 @@ namespace SevenZipFrontend {
             OutArchiveFormat format = OutArchiveFormat.SevenZip; // default format
             var t = new Thread((ThreadStart)(() => {
                 using (var saveFileDialog = new SaveFileDialog()) {
-                    saveFileDialog.Filter = "7ZIP files (*.7z)|*.7z|ZIP files (*.zip)|*.zip|GZip files (*.gz)|*.gz|BZip2 files (*.bz2)|*.bz2|Tar files (*.tar)|*.tar|All files (*.*)|*.*";
+                    saveFileDialog.Filter = "7ZIP files (*.7z)|*.7z|ZIP files (*.zip)|*.zip|GZip files (*.gz)|*.gz|BZip2 files (*.bz2)|*.bz2|Tar files (*.tar)|*.tar";
                     saveFileDialog.FilterIndex = 1;
                     saveFileDialog.RestoreDirectory = true;
 
@@ -81,7 +81,7 @@ namespace SevenZipFrontend {
             string archiveName = null;
             var t = new Thread((ThreadStart)(() => {
                 using (var openFileDialog = new OpenFileDialog()) {
-                    openFileDialog.Filter = "7ZIP files (*.7z)|*.7z|ZIP files (*.zip)|*.zip|GZip files (*.gz)|*.gz|BZip2 files (*.bz2)|*.bz2|Tar files (*.tar)|*.tar|All files (*.*)|*.*";
+                    openFileDialog.Filter = "Compressed files (*.7z;*.zip;*.gz;*.bz2;*.tar)|*.7z;*.zip;*.gz;*.bz2;*.tar";
                     openFileDialog.FilterIndex = 1;
                     openFileDialog.RestoreDirectory = true;
 
