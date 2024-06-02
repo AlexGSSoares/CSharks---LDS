@@ -5,7 +5,7 @@ using SevenZip;
 namespace SevenZipFrontend {
     // Model
     public class ArchiveManager {
-        public bool CreateArchive(string archiveName, string[] filesToArchive) {
+        public bool CreateArchive(string archiveName, string[] filesToArchive, OutArchiveFormat format) {
             try {
                 if (File.Exists(archiveName)) {
                     return false; // Indicate that the archive already exists
@@ -15,6 +15,7 @@ namespace SevenZipFrontend {
                 // Example:
                 SevenZipCompressor.SetLibraryPath("7z64.dll");
                 var compressor = new SevenZipCompressor();
+                compressor.ArchiveFormat = format;
                 compressor.CompressFiles(archiveName, filesToArchive);
                 return true; // Indicate that the archive was created successfully
             } catch {

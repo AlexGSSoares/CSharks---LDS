@@ -14,7 +14,7 @@ namespace SevenZipFrontend {
         }
 
         public void CreateArchive() {
-            string archiveName = view.GetArchiveName();
+            var (archiveName, format) = view.GetArchiveName();
             if (archiveName == null) {
                 // User cancelled, return without creating archive
                 return;
@@ -26,7 +26,7 @@ namespace SevenZipFrontend {
                 return;
             }
 
-            if (archiveManager.CreateArchive(archiveName, filesToArchive)) {
+            if (archiveManager.CreateArchive(archiveName, filesToArchive, format)) {
                 view.ShowMessage("Archive created successfully!");
             } else {
                 view.ShowMessage("Failed to create archive. Archive may already exist.");

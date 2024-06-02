@@ -1,12 +1,13 @@
 using System;
 using System.Threading;
 using System.Windows.Forms;
+using SevenZip;
 
 namespace SevenZipFrontend {
     // View
     public interface IConsoleView {
         void ShowMessage(string message);
-        string GetArchiveName();
+        (string, OutArchiveFormat) GetArchiveName();
         string[] GetFilesToArchive();
         string GetExtractPath();
         string GetArchiveToExtract();        
@@ -27,16 +28,26 @@ namespace SevenZipFrontend {
             controller.ExtractArchive();
         }
 
-        public string GetArchiveName() {
+        public (string, OutArchiveFormat) GetArchiveName() {
             string archiveName = null;
+            OutArchiveFormat format = OutArchiveFormat.SevenZip; // default format
             var t = new Thread((ThreadStart)(() => {
                 using (var saveFileDialog = new SaveFileDialog()) {
-                    saveFileDialog.Filter = "7ZIP files (*.7z)|*.7z|ZIP files (*.zip)|*.zip|All files (*.*)|*.*";
+                    saveFileDialog.Filter = "7ZIP files (*.7z)|*.7z|ZIP files (*.zip)|*.zip|GZip files (*.gz)|*.gz|BZip2 files (*.bz2)|*.bz2|Tar files (*.tar)|*.tar|All files (*.*)|*.*";
                     saveFileDialog.FilterIndex = 1;
                     saveFileDialog.RestoreDirectory = true;
 
                     if (saveFileDialog.ShowDialog() == DialogResult.OK) {
                         archiveName = saveFileDialog.FileName;
+                        switch (Path.GetExtension(archiveName).ToLower()) {
+                            case ".zip":
+                                format = OutArchiveFormat.Zip;
+                                break;
+                            case ".7z":
+                            default:
+                                format = OutArchiveFormat.SevenZip;
+                                break;
+                        }
                     }
                 }
             }));
@@ -44,7 +55,7 @@ namespace SevenZipFrontend {
             t.Start();
             t.Join();
 
-            return archiveName;
+            return (archiveName, format);
         }
 
         public string[] GetFilesToArchive() {
@@ -70,7 +81,7 @@ namespace SevenZipFrontend {
             string archiveName = null;
             var t = new Thread((ThreadStart)(() => {
                 using (var openFileDialog = new OpenFileDialog()) {
-                    openFileDialog.Filter = "7ZIP files (*.7z)|*.7z|ZIP files (*.zip)|*.zip|All files (*.*)|*.*";
+                    openFileDialog.Filter = "7ZIP files (*.7z)|*.7z|ZIP files (*.zip)|*.zip|GZip files (*.gz)|*.gz|BZip2 files (*.bz2)|*.bz2|Tar files (*.tar)|*.tar|All files (*.*)|*.*";
                     openFileDialog.FilterIndex = 1;
                     openFileDialog.RestoreDirectory = true;
 
