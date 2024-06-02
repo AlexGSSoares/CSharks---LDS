@@ -35,8 +35,8 @@ Para clonar o programa no seu computador, siga os passos abaixo:
 
 Após clonar o repositório e navegar para o diretório do programa, compile e execute o programa usando os seguintes comandos no PowerShell:
 
-dotnet build   # Compila o programa
-dotnet run     # Executa o programa
+- dotnet build   # Compila o programa
+- dotnet run     # Executa o programa
 
 ## FUNCIONALIDADES DO PROGRAMA ##
 
