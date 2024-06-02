@@ -71,7 +71,6 @@ namespace SevenZipFrontend {
             this.compressionLevelLabel.Text = "Compression Level:";
             this.Controls.Add(this.compressionLevelLabel);
 
-
             this.btnCreateArchive = new System.Windows.Forms.Button();
             this.btnExtractArchive = new System.Windows.Forms.Button();
             this.SuspendLayout();
