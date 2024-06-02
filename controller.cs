@@ -1,6 +1,7 @@
 using System;
 using System.Threading;
 using System.Windows.Forms;
+using SevenZip;
 
 namespace SevenZipFrontend {
     // Controller
@@ -19,6 +20,7 @@ namespace SevenZipFrontend {
                 // User cancelled, return without creating archive
                 return;
             }
+            CompressionLevel compressionLevel = view.GetCompressionLevel();
 
             string[] filesToArchive = view.GetFilesToArchive();
             if (filesToArchive == null || filesToArchive.Length == 0) {
@@ -26,7 +28,7 @@ namespace SevenZipFrontend {
                 return;
             }
 
-            if (archiveManager.CreateArchive(archiveName, filesToArchive, format)) {
+            if (archiveManager.CreateArchive(archiveName, filesToArchive, format, compressionLevel)) {
                 view.ShowMessage("Archive created successfully!");
             } else {
                 view.ShowMessage("Failed to create archive. Archive may already exist.");

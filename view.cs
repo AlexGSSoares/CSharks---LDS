@@ -8,6 +8,7 @@ namespace SevenZipFrontend {
     public interface IConsoleView {
         void ShowMessage(string message);
         (string, OutArchiveFormat) GetArchiveName();
+        CompressionLevel GetCompressionLevel();
         string[] GetFilesToArchive();
         string GetExtractPath();
         string GetArchiveToExtract();        
@@ -26,6 +27,21 @@ namespace SevenZipFrontend {
         }
         private void btnExtractArchive_Click(object sender, EventArgs e) {
             controller.ExtractArchive();
+        }
+
+        public CompressionLevel GetCompressionLevel() {
+            
+            // Get the selected item from the ComboBox
+            string selectedOption = compressionLevelComboBox.SelectedItem.ToString();
+
+            // Return the corresponding CompressionLevel
+            switch (selectedOption) {
+                case "None": return CompressionLevel.None;
+                case "Fast": return CompressionLevel.Fast;
+                case "Normal": return CompressionLevel.Normal;
+                case "Ultra": return CompressionLevel.Ultra;
+                default: return CompressionLevel.Normal; // Default to Normal if invalid input
+            }
         }
 
         public (string, OutArchiveFormat) GetArchiveName() {
