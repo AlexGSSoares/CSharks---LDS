@@ -4,16 +4,15 @@
       =========================================
       ## README - CSharks 7z Management Tool ##
       =========================================
-A nossa ferramenta que utiliza a biblioteca **7z** para compactar e descompactar arquivos, proporcionando uma maneira eficiente de gerir arquivos compactados.
+Our tool that uses the 7z library to compress and decompress files, providing an efficient way to manage compressed files.
+
+## INSTALLATION ##
 
 
-## INSTALAÇÃO ##
-
-
--- Descarregar o Git --
+-- Download Git --
 - **Windows:** 
 
-	Descarregue o Git através do [link oficial](https://git-scm.com/download/win).
+	Download Git via [link oficial](https://git-scm.com/download/win).
 
 - **Linux (via PowerShell):**
 
