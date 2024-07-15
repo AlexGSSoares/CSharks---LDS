@@ -12,42 +12,42 @@ Our tool that uses the 7z library to compress and decompress files, providing an
 -- Download Git --
 - **Windows:** 
 
-	Download Git via [link oficial](https://git-scm.com/download/win).
+	Download Git via [official link](https://git-scm.com/download/win).
 
 - **Linux (via PowerShell):**
 
   	apt install git
-  	(* Digite "y" quando solicitado.)
+  	(* Type "y" when prompted.)
 
   
-## CLONAR REPOSITÓRIO ##
+## CLONE REPOSITORY ##
 
-Para clonar o programa no seu computador, siga os passos abaixo:
+To clone the programme on your computer, follow the steps below:
 
-1. Certifique-se de estar num diretório seguro onde deseja clonar o repositório. Use o comando `cd` para navegar entre pastas e `mkdir` para criar uma nova pasta, se necessário.
+1. Make sure you are in a safe directory where you want to clone the repository. Use the `cd` command to navigate between folders and `mkdir` to create a new folder if necessary.
 
-2. Clone o repositório. Comandos de Powershell:
+2. Clone the repository. Powershell commands:
    - git clone https://github.com/AlexGSSoares/CSharks---LDS
    - cd CSharks---LDS
 
-## EXECUÇÃO E COMPILAÇÃO ##
+## EXECUTION AND COMPILATION ##
 
-Após clonar o repositório e navegar para o diretório do programa, compile e execute o programa usando os seguintes comandos no PowerShell:
+After cloning the repository and navigating to the programme directory, build and run the programme using the following commands in PowerShell:
 
-- dotnet build   # Compila o programa
-- dotnet run     # Executa o programa
+- dotnet build # Compile the programme
+- dotnet run # Run the programme
 
-## FUNCIONALIDADES DO PROGRAMA ##
+## PROGRAMME FEATURES ##
 
-O **CSharks** possui um menu interativo com três opções principais:
+**CSharks** has an interactive menu with three main options:
 
-1. **Create Archive**
-   - Solicita um nome para o arquivo (deve terminar com ".7z"). Exemplo: CSharks.7z
-   - Pede os arquivos que deseja compactar, incluindo suas extensões.
+1. **Create Archive
+   - Requests a name for the archive (must end with ".7z"). Example: CSharks.7z
+   - Requests the files you want to compress, including their extensions.
 
-2. **Extract Archive**
-   - Solicita o nome do arquivo que deseja extrair (não esqueça de incluir a extensão). Exemplo: CSharks.7z
-   - Pede o caminho onde o arquivo extraído será colocado.
+2. **Extract Archive
+   - Requests the name of the archive you want to extract (don't forget to include the extension). Example: CSharks.7z
+   - Requests the path where the extracted file will be placed.
 
-3. **Exit**
-   - Encerra o programa.
+3. **Exit
+   - Exits the programme.
